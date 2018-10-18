@@ -18,6 +18,7 @@ public class MagpieRunner4 {
 		do {
 			System.out.println(response);
 			statement = JOptionPane.showInputDialog(response);
+			response = maggie.getResponse(statement);
 			System.out.println(statement);
 		} while (!statement.equals("Bye"));
 	}
