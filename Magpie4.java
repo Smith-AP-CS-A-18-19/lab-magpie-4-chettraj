@@ -42,7 +42,11 @@ public class Magpie4 {
 		// Responses which require transformations
 		else if (findKeyword(statement, "I want to", 0) >= 0) {
 			response = transformIWantToStatement(statement);
-		} else {
+		}
+		else if (findKeyword(statement, "I want", 0) >= 0) {
+			response = transformIWantStatement(statement);
+		}
+			else {
 			// Look for a two word (you <something> me)
 			// pattern
 			int psn = findKeyword(statement, "you", 0);
@@ -78,7 +82,19 @@ public class Magpie4 {
 		return "What would it mean to " + restOfStatement + "?";
 	}
 
-
+	private String transformIWantStatement(String statement) {
+		//  Remove the final period, if there is one
+		statement = statement.trim();
+		String lastChar = statement.substring(statement
+				.length() - 1);
+		if (lastChar.equals(".")) {
+			statement = statement.substring(0,
+							statement.length() - 1);
+		}
+		int psn = findKeyword (statement, "I want", 0);
+		String restOfStatement = statement.substring(psn + 6).trim();
+		return "Why do you want to " + restOfStatement + "?";
+	}
 
 	/**
 	 * Take a statement with "you <something> me" and transform it into

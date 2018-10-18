@@ -14,10 +14,10 @@ public class MagpieRunner4 {
 		Magpie4 maggie = new Magpie4();
 
 		String response = maggie.getGreeting();
-
+		String statement;
 		do {
 			System.out.println(response);
-			String statement = JOptionPane.showInputDialog(response);
+			statement = JOptionPane.showInputDialog(response);
 			System.out.println(statement);
 		} while (!statement.equals("Bye"));
 	}
